@@ -9,7 +9,7 @@ import { useDataLayerValue } from "./Helpers/DataLayer";
 
 const spotifyFetch = new SpotifyWebApi();
 function App() {
-  const [{ user, token }, dispatch] = useDataLayerValue();
+  const [{ token }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
     const responseUrl = getTokenFromURL();
@@ -30,10 +30,22 @@ function App() {
           user: user,
         });
       });
-    }
-  }, []);
 
-  return <div className="app">{token ? <Player /> : <Login />}</div>;
+      spotifyFetch.getUserPlaylists().then((playlists) => {
+        dispatch({
+          type: "SET_PLAYLISTS",
+          playlists: playlists,
+        });
+      });
+    }
+  });
+  console.log(token, "iiiiiiiii");
+
+  return (
+    <div className="app">
+      {token ? <Player spotify={spotifyFetch} /> : <Login />}
+    </div>
+  );
 }
 
 export default App;

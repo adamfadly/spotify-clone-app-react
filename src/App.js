@@ -5,10 +5,12 @@ import { getTokenFromURL } from "./Services/Spotify/spotify";
 import SpotifyWebApi from "spotify-web-api-js";
 import Player from "./Components/Player/Player";
 
-const spotifyPkg = new SpotifyWebApi();
+import { useDataLayerValue } from "./Helpers/DataLayer";
 
+const spotifyPkg = new SpotifyWebApi();
 function App() {
   const [token, setToken] = useState(null);
+  const [{ user }, dispatch] = useDataLayerValue();
 
   useEffect(() => {
     const responseUrl = getTokenFromURL();
@@ -19,10 +21,14 @@ function App() {
       setToken(_token);
       spotifyPkg.setAccessToken(_token);
       spotifyPkg.getMe().then((user) => {
-        console.log("ada user niuhhh 🥳", user);
+        dispatch({
+          type: "SET_USER",
+          user: user,
+        });
       });
     }
   }, []);
+  console.log("ada user niuhhh 🥳", user);
 
   return (
     <div className="app">

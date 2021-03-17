@@ -7,7 +7,7 @@ import Player from "./Components/Player/Player";
 
 import { useDataLayerValue } from "./Helpers/DataLayer";
 
-const spotifyPkg = new SpotifyWebApi();
+const spotifyFetch = new SpotifyWebApi();
 function App() {
   const [{ user, token }, dispatch] = useDataLayerValue();
 
@@ -22,9 +22,9 @@ function App() {
         token: _token,
       });
 
-      spotifyPkg.setAccessToken(_token);
+      spotifyFetch.setAccessToken(_token);
 
-      spotifyPkg.getMe().then((user) => {
+      spotifyFetch.getMe().then((user) => {
         dispatch({
           type: "SET_USER",
           user: user,

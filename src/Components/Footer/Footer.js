@@ -16,7 +16,7 @@ function Footer({ icon }) {
       <div className="footer__left">
         <img
           className="footer__albumLogo"
-          src="https://getheavy.com/wp-content/uploads/2019/12/spotify2019-830x350.jpg"
+          src="https://i.scdn.co/image/ab67616d0000485168c1edbfcc7cb3e0a3aac9c6"
           alt=""
         />
         <div className="footer__sonngInfo">

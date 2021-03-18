@@ -7,6 +7,7 @@
   padding-left: 10px;
   padding-right: 10px;
   background: #040404;
+  overflow-y: overlay;
 }
 
 .sidebar__logo {
